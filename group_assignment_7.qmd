@@ -35,36 +35,30 @@ The data is obtained from the online link:
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 ```
 
-## Look at the data in PC coordinates 1
+## Look at the data in PC coordinates
 
 ```{r}
-pca_fit <- biopsy %>% 
+pca_fit <- biopsy |> 
   select(where(is.numeric)) %>% # retain only numeric columns
   prcomp(scale = TRUE) # do PCA on scaled data
 
-```
-
-Alternatively,
-
-```{r}
-pca_fit <- biopsy %>% 
-  select(where(is.numeric)) %>% # retain only numeric columns
-  scale() %>% # scale data
-  prcomp() # do PCA
 ```
 
 Now we plot the data in PC coordinates
 
 ```{r}
   
-pca_fit %>%
-  augment(biopsy) %>% # add original dataset back in
-  ggplot(aes(.fittedPC1, .fittedPC2, color = outcome)) + 
+pca_fit |> 
+  augment(biopsy) |>  # add original dataset back in
+  ggplot(aes(x = .fittedPC1, 
+             y = .fittedPC2, 
+             color = outcome)) + 
   geom_point(size = 1.5) +
-  scale_color_manual(
-    values = c(malignant = "#D55E00", benign = "#0072B2")
+  scale_color_manual(values = c(malignant = "#D55E00", 
+                                benign = "#0072B2")
   ) +
-  theme_half_open(12) + background_grid()
+  theme_half_open(12) + 
+  background_grid()
 ```
 
 ## Look at the data in PC coordinates 2
@@ -73,8 +67,7 @@ Now we get the rotation matrix
 
 ```{r}
 
-# extract rotation matrix
-pca_fit %>%
+pca_fit |> 
   tidy(matrix = "rotation")
 ```
 
@@ -87,17 +80,21 @@ arrow_style <- arrow(
 )
 
 # plot rotation matrix
-pca_fit %>%
-  tidy(matrix = "rotation") %>%
-  pivot_wider(names_from = "PC", names_prefix = "PC", values_from = "value") %>%
-  ggplot(aes(PC1, PC2)) +
+pca_fit |> 
+  tidy(matrix = "rotation") |> 
+  pivot_wider(names_from = "PC", 
+              names_prefix = "PC",
+              values_from = "value") |> 
+  ggplot(aes(x = PC1, 
+             y = PC2)) +
   geom_segment(xend = 0, yend = 0, arrow = arrow_style) +
   geom_text(
     aes(label = column),
     hjust = 1, nudge_x = -0.02, 
     color = "#904C2F"
   ) +
-  xlim(-1.25, .5) + ylim(-.5, 1) +
+  xlim(-1.25, .5) + 
+  ylim(-.5, 1) +
   coord_fixed() + # fix aspect ratio to 1:1
   theme_minimal_grid(12)
 ```
@@ -108,7 +105,7 @@ We will plot the variance explained by each PC. First, we need to extract the in
 
 ```{r}
 
-pca_fit %>%
+pca_fit |> 
   tidy(matrix = "eigenvalues")
 ```
 
@@ -116,9 +113,9 @@ And then we plot:
 
 ```{r}
 
-pca_fit %>%
-  tidy(matrix = "eigenvalues") %>%
-  ggplot(aes(PC, percent)) +
+pca_fit |> 
+  tidy(matrix = "eigenvalues") |> 
+  ggplot(aes(x = PC, y = percent)) +
   geom_col(fill = "#56B4E9", alpha = 0.8) +
   scale_x_continuous(breaks = 1:9) +
   scale_y_continuous(
