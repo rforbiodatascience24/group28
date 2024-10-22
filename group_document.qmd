@@ -6,6 +6,15 @@ editor: visual
 
 ## Emilie
 
+#### New analysis
+
+Some text
+
+```{r}
+# a few code chunks
+3*2
+```
+
 Mig :)
 
 ```{r}
@@ -19,6 +28,15 @@ Hej!
 ```{r}
  
 2+2
+```
+
+### New feature
+
+This is a new feature
+
+```{r}
+
+x <- 2+2
 ```
 
 ## Iben
