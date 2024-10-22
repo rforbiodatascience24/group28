@@ -21,6 +21,15 @@ Hej!
 2+2
 ```
 
+### New feature
+
+This is a new feature
+
+```{r}
+
+x <- 2+2
+```
+
 ## Iben
 
 ## Jonas
