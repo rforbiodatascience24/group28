@@ -1,5 +1,5 @@
 ---
-title: "group_assignment_7"
+title: "Lab 7 Assignment: Group 28"
 format: html
 editor: visual
 ---
