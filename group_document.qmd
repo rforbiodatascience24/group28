@@ -6,6 +6,15 @@ editor: visual
 
 ## Emilie
 
+#### New analysis
+
+Some text
+
+```{r}
+# a few code chunks
+3*2
+```
+
 Mig :)
 
 ```{r}
