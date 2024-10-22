@@ -28,6 +28,8 @@ library("cowplot")
 
 ## Getting the data
 
+The data is obtained from the online link:
+
 ```{r}
 
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
