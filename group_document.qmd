@@ -8,6 +8,10 @@ editor: visual
 
 Mig :)
 
+```{r}
+# R code!
+```
+
 ## Vedis
 
 Hej!
