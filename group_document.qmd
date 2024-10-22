@@ -43,4 +43,10 @@ x <- 2+2
 
 ## Jonas
 
+### Nice R-code
+
+```{r}
+5+5
+```
+
 ## Torbjørn
