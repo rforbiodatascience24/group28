@@ -4,6 +4,6 @@ format: html
 editor: visual
 ---
 
-## Quarto s203516
+## Quarto s203516 
 
 `false` option disables the printing of code (only output is displayed).
