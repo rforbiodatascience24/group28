@@ -16,9 +16,21 @@ editor: visual
 
 ```{r}
 #| label: "loading_libraries"
+#| echo: true
+#| eval: true
+#| output: false
 
+library("tidyverse")
+library("broom")
+library("cowplot")
 
+```
 
+## Getting the data
+
+```{r}
+
+biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 ```
 
 ## Look at the data in PC coordinates 1
@@ -26,3 +38,30 @@ editor: visual
 ## Look at the data in PC coordinates 2
 
 ## Look at the variance explained by each PC
+
+We will plot the variance explained by each PC. First, we need to extract the information:
+
+```{r}
+
+pca_fit %>%
+  tidy(matrix = "eigenvalues")
+```
+
+And then we plot:
+
+```{r}
+
+pca_fit %>%
+  tidy(matrix = "eigenvalues") %>%
+  ggplot(aes(PC, percent)) +
+  geom_col(fill = "#56B4E9", alpha = 0.8) +
+  scale_x_continuous(breaks = 1:9) +
+  scale_y_continuous(
+    labels = scales::percent_format(),
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  theme_minimal_hgrid(12)
+
+```
+
+The first PC captures 65% of variation.
