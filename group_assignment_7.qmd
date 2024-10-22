@@ -14,5 +14,15 @@ editor: visual
 
 ## Loading libraries
 
-```{r}  library(tidyverse) library(dplyr) library(ggplot2) library(patchwork)}
+```{r}
+#| label: "loading_libraries"
+
+
+
 ```
+
+## Look at the data in PC coordinates 1
+
+## Look at the data in PC coordinates 2
+
+## Look at the variance explained by each PC
